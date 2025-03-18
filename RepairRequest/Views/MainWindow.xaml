@@ -5,8 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RepairRequest"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Icon="\Images\icon.png"
+        Title="Управление заявками на ремонт оборудивания" Height="450" Width="800">
     <Grid>
-
+        <Frame Name="mainFrame" />
     </Grid>
 </Window>
