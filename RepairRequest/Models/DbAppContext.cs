@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using DotNetEnv;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
@@ -28,8 +29,20 @@ namespace RepairRequest.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=repair_request;Username=postgres;Password=918273645zx");
+                // Загружаем переменные окружения из .env файла
+                Env.Load();
+                Env.TraversePath().Load();
+
+                // Читаем данные из .env
+                string host = Env.GetString("DB_HOST", "localhost");
+                string user = Env.GetString("DB_USER", "postgres");
+                string password = Env.GetString("DB_PASSWORD", "root");
+                string database = Env.GetString("DB_NAME", "repair_request");
+
+                // Формируем строку подключения
+                string connectionString = $"Host={host}; Username={user}; Password={password}; Database={database}";
+
+                optionsBuilder.UseNpgsql(connectionString);
             }
         }
 
