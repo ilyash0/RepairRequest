@@ -11,8 +11,8 @@ namespace RepairRequest.Models
         }
 
         public int RequestId { get; set; }
-        public DateOnly DateAdded { get; set; }
-        public DateOnly? DateClosed { get; set; }
+        public DateTime DateAdded { get; set; }
+        public DateTime? DateClosed { get; set; }
         public string Equipment { get; set; } = null!;
         public int ProblemTypeId { get; set; }
         public string? Description { get; set; }

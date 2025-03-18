@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using RepairRequest.Views;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -20,7 +21,7 @@ namespace RepairRequest
         {
             InitializeComponent();
             FrameContext.MainWindowFrame = mainFrame;
-            //FrameContext.MainWindowFrame.Navigate();
+            FrameContext.MainWindowFrame.Navigate(new RequestListPage());
         }
     }
 }

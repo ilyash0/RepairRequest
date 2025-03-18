@@ -18,10 +18,65 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        
-        
+
+        <Image Width="32"
+               Margin="5"
+               Source="/Images/icon.png" />
+        <TextBlock
+                   Grid.Column="1"
+                   Text="Список заявок на ремонт"
+                   Margin="5"
+                   FontSize="32" />
+        <TextBlock Name="textBoxAvgTime"
+                   Grid.ColumnSpan="2"
+                   Grid.Row="1"
+                   Text="Среднее время выполнения заявки: "
+                   Margin="5" />
+
+        <ListBox Name="requestsList"
+                 Margin="5"
+                 Background="#F4E8D3"
+                 HorizontalContentAlignment="Stretch"
+                 Grid.Row="2"
+                 Grid.ColumnSpan="3">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="auto" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                        </Grid.RowDefinitions>
+
+                        <TextBlock FontSize="18"
+                                   TextWrapping="Wrap">
+                            <Run Text="{Binding RequestId}" />
+                            -
+                            <Run Text="{Binding Client.ClientName}" />
+                        </TextBlock>
+
+                        <TextBlock Text="{Binding Status.StatusName}"
+                                   Grid.Column="1"
+                                   Margin="0 0 15 0"
+                                   FontSize="18" />
+
+                        <TextBlock Grid.Row="1">
+                            <Run Text="{Binding DateAdded, StringFormat=dd.MM.yyyy}" />
+                            <Run Text="-" />
+                            <Run Text="{Binding DateClosed, StringFormat=dd.MM.yyyy}" /><LineBreak />
+                            <Run Text="{Binding Equipment}" /><LineBreak />
+                            Проблема: <Run Text="{Binding ProblemType.ProblemTypeName}" />
+                        </TextBlock>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </Grid>
 </Page>

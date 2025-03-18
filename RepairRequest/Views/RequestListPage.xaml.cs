@@ -23,6 +23,10 @@ namespace RepairRequest.Views
         public RequestListPage()
         {
             InitializeComponent();
+            requestsList.ItemsSource = ViewModel.GetRequestsForView();
+            textBoxAvgTime.Text += $"{ViewModel.AverageCompletionTime().Days} дн. " +
+                $"{ViewModel.AverageCompletionTime().Hours} ч. " +
+                $"{ViewModel.AverageCompletionTime().Minutes} мин.";
         }
     }
 }

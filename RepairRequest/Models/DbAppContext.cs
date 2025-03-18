@@ -5,13 +5,13 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace RepairRequest.Models
 {
-    public partial class repair_requestContext : DbContext
+    public partial class DbAppContext : DbContext
     {
-        public repair_requestContext()
+        public DbAppContext()
         {
         }
 
-        public repair_requestContext(DbContextOptions<repair_requestContext> options)
+        public DbAppContext(DbContextOptions<DbAppContext> options)
             : base(options)
         {
         }
