@@ -42,6 +42,14 @@ namespace RepairRequest
                 .FirstOrDefault();
         }
 
+        public static Client AddClient(Client client)
+        { 
+            using DbAppContext ctx = new();
+            var a = ctx.Clients.Add(client);
+            ctx.SaveChanges();
+            return a.Entity;
+        }
+
         public static void AddRequests(Request request)
         {
             using DbAppContext ctx = new();

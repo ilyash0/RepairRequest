@@ -9,6 +9,12 @@ namespace RepairRequest.Models
         {
             Requests = new HashSet<Request>();
         }
+        public Client(string name, string number)
+        {
+            Requests = new HashSet<Request>();
+            ClientName = name;
+            PhoneNumber = number;
+        }
 
         public int ClientId { get; set; }
         public string ClientName { get; set; } = null!;

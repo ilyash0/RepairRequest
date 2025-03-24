@@ -74,7 +74,7 @@
                               Margin="0 0 0 10" />
 
                     <TextBlock Text="Имя клиента" />
-                    <TextBox  x:Name="txtCLientName"
+                    <TextBox  x:Name="txtClientName"
                               Text="{ Binding Client.ClientName }"
                               MaxLength="100"
                               Margin="0 0 0 10" />

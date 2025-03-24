@@ -46,14 +46,19 @@ namespace RepairRequest.Views
                 return;
             }
 
-            Client? ponetntialClent = ViewModel.GetClientOtNullByPhoneNumber(txtClientPhoneNumber.Text);
-            if (ponetntialClent != null && ponetntialClent.ClientId != _request.ClientId)
+            Client? potentialClent = ViewModel.GetClientOtNullByPhoneNumber(txtClientPhoneNumber.Text);
+            if (potentialClent != null && potentialClent.ClientId != _request.ClientId)
             {
-                _request.ClientId = ponetntialClent.ClientId;
-                MessageBox.Show($"Найден клиент с введёным номером. Клиент заменён на {ponetntialClent.ClientName}", "Информация", MessageBoxButton.OK, MessageBoxImage.Information);
+                _request.ClientId = potentialClent.ClientId;
+                MessageBox.Show($"Найден клиент с введёным номером. Клиент заменён на {potentialClent.ClientName}", "Информация", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            else if (potentialClent == null && _request.Client == null)
+            {
+                Client _client = new Client(txtClientName.Text, txtClientPhoneNumber.Text);
+                _request.ClientId = ViewModel.AddClient(_client).ClientId;
             }
 
-            if (_request.StatusId == 1)  // Статус заявки "Выполнена"
+            if (_request.StatusId == 2)  // Статус заявки "Выполнена"
             {
                 _request.DateClosed = DateTime.Today;
             }
@@ -98,7 +103,7 @@ namespace RepairRequest.Views
             {
                 return false;
             }
-            if (string.IsNullOrEmpty(txtCLientName.Text))
+            if (string.IsNullOrEmpty(txtClientName.Text))
             {
                 return false;
             }
