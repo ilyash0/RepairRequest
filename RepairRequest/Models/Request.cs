@@ -9,6 +9,12 @@ namespace RepairRequest.Models
         {
             SparePartRequests = new HashSet<SparePartRequest>();
         }
+        public Request(int statusId, DateTime dateAdded)
+        {
+            SparePartRequests = new HashSet<SparePartRequest>();
+            StatusId = statusId;
+            DateAdded = dateAdded;
+        }
 
         public int RequestId { get; set; }
         public DateTime DateAdded { get; set; }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RepairRequest.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,6 +28,19 @@ namespace RepairRequest.Views
             textBoxAvgTime.Text += $"{ViewModel.AverageCompletionTime().Days} дн. " +
                 $"{ViewModel.AverageCompletionTime().Hours} ч. " +
                 $"{ViewModel.AverageCompletionTime().Minutes} мин.";
+        }
+
+        private void NewRequest_Click(object sender, RoutedEventArgs e)
+        {
+            FrameContext.MainWindowFrame.Navigate(new RequestEditPage());
+        }
+
+        private void requestsList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (((ListBox)sender).SelectedItem is Request request)
+            {
+                FrameContext.MainWindowFrame.Navigate(new RequestEditPage(request));
+            }
         }
     }
 }

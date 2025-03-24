@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using DotNetEnv;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace RepairRequest.Models
 {
@@ -48,6 +49,11 @@ namespace RepairRequest.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            var dateTimeConverter = new ValueConverter<DateTime, DateTime>(
+                v => DateTime.SpecifyKind(v, DateTimeKind.Utc),
+                v => DateTime.SpecifyKind(v, DateTimeKind.Utc)
+            );
+
             modelBuilder.Entity<Client>(entity =>
             {
                 entity.ToTable("client");
@@ -82,9 +88,9 @@ namespace RepairRequest.Models
 
                 entity.Property(e => e.ClientId).HasColumnName("client_id");
 
-                entity.Property(e => e.DateAdded).HasColumnName("date_added");
+                entity.Property(e => e.DateAdded).HasColumnName("date_added").HasConversion(dateTimeConverter); ;
 
-                entity.Property(e => e.DateClosed).HasColumnName("date_closed");
+                entity.Property(e => e.DateClosed).HasColumnName("date_closed").HasConversion(dateTimeConverter); ;
 
                 entity.Property(e => e.Description).HasColumnName("description");
 

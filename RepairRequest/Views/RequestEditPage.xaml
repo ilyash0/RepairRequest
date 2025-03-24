@@ -1,0 +1,105 @@
+﻿<Page x:Class="RepairRequest.Views.RequestEditPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:RepairRequest.Views"
+      mc:Ignorable="d"
+      d:DesignHeight="450"
+      d:DesignWidth="800"
+      Title="RequestEditPage">
+
+    <Grid Margin="5"
+          Background="White">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Image Width="32"
+               Margin="5"
+               Source="/Images/icon.png" />
+        <TextBlock x:Name="textBlockTitle"
+                   Grid.Column="1"
+                   Margin="5"
+                   FontSize="32">
+            <Run Text="{Binding RequestId}" />
+            -
+            <Run Text="{Binding Client.ClientName}" />
+        </TextBlock>
+
+        <WrapPanel Grid.Column="2"
+                   Grid.Row="2">
+            <Button Click="Save_Click"
+                    Content="Сохранить" />
+            <Button Click="Cancel_Click"
+                    Content="Назад" />
+        </WrapPanel>
+
+        <ScrollViewer HorizontalScrollBarVisibility="Auto"
+                      VerticalScrollBarVisibility="Auto"
+                      Margin="10"
+                      Grid.Row="1"
+                      Grid.ColumnSpan="3"
+                      Background="#F4E8D3">
+
+            <Border BorderBrush="Gray"
+                    BorderThickness="1"
+                    Padding="5">
+
+                <StackPanel>
+                    <TextBlock Text="Оборудование" />
+                    <TextBox  x:Name="txtEquipment"
+                              Text="{ Binding Equipment }"
+                              MaxLength="100"
+                              Margin="0 0 0 10" />
+
+                    <TextBlock Text="Тип неисправности" />
+                    <ComboBox Name="comboBoxProblemType"
+                              DisplayMemberPath="ProblemTypeName"
+                              SelectedValuePath="ProblemTypeId"
+                              SelectedValue="{ Binding ProblemTypeId }"
+                              Margin="0 0 0 10" />
+
+                    <TextBlock Text="Описание проблемы" />
+                    <TextBox  x:Name="txtDescription"
+                              Text="{ Binding Description }"
+                              MaxLength="1000"
+                              Margin="0 0 0 10" />
+
+                    <TextBlock Text="Имя клиента" />
+                    <TextBox  x:Name="txtCLientName"
+                              Text="{ Binding Client.ClientName }"
+                              MaxLength="100"
+                              Margin="0 0 0 10" />
+
+                    <TextBlock Text="Номер телефона клиента" />
+                    <TextBox  x:Name="txtClientPhoneNumber"
+                              Text="{ Binding Client.PhoneNumber }"
+                              MaxLength="20"
+                              Margin="0 0 0 10"
+                              PreviewTextInput="NumberValidationTextBox"/>
+
+                    <TextBlock Text="Дата добавления" />
+                    <TextBox x:Name="txtDateAdded"
+                             Text="{ Binding DateAdded, StringFormat=dd.MM.yyyy }"
+                             MaxLength="1000"
+                             Margin="0 0 0 10" />
+
+                    <TextBlock Text="Стутус завявки" />
+                    <ComboBox Name="comboBoxStatus"
+                              DisplayMemberPath="StatusName"
+                              SelectedValuePath="StatusId"
+                              SelectedValue="{ Binding StatusId }"
+                              Margin="0 0 0 10" />
+                </StackPanel>
+            </Border>
+        </ScrollViewer>
+    </Grid>
+</Page>

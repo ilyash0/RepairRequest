@@ -20,6 +20,42 @@ namespace RepairRequest
                 .ToList();
         }
 
+        public static List<ProblemType> GetProblemTypesForView()
+        {
+            using DbAppContext ctx = new();
+            return ctx.ProblemTypes
+                .ToList();
+        }
+
+        public static List<Status> GetStatusView()
+        {
+            using DbAppContext ctx = new();
+            return ctx.Statuses
+                .ToList();
+        }
+
+        public static Client? GetClientOtNullByPhoneNumber(string phoneNumber)
+        {
+            using DbAppContext ctx = new();
+            return ctx.Clients
+                .Where(c => c.PhoneNumber == phoneNumber)
+                .FirstOrDefault();
+        }
+
+        public static void AddRequests(Request request)
+        {
+            using DbAppContext ctx = new();
+            ctx.Requests.Add(request);
+            ctx.SaveChanges();
+        }
+
+        public static void UpdateRequests(Request request)
+        {
+            using DbAppContext ctx = new();
+            ctx.Requests.Update(request);
+            ctx.SaveChanges();
+        }
+
         public static TimeSpan AverageCompletionTime()
         {
             using DbAppContext ctx = new();

@@ -37,12 +37,18 @@
                    Text="Среднее время выполнения заявки: "
                    Margin="5" />
 
+        <Button Click="NewRequest_Click"
+                Content="Создать новую завяку" 
+                Grid.Column="2"
+                Grid.Row="3"/>
+
         <ListBox Name="requestsList"
                  Margin="5"
                  Background="#F4E8D3"
                  HorizontalContentAlignment="Stretch"
                  Grid.Row="2"
-                 Grid.ColumnSpan="3">
+                 Grid.ColumnSpan="3"
+                 MouseDoubleClick="requestsList_MouseDoubleClick">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Grid>
