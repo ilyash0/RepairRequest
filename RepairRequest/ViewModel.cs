@@ -19,11 +19,26 @@ namespace RepairRequest
                 .Include(p => p.ProblemType)
                 .ToList();
         }
+        public static List<SparePartRequest> GetSparePartRequestsForView(int requestId)
+        {
+            using DbAppContext ctx = new();
+            return ctx.SparePartRequests
+                .Include(p => p.SparePart)
+                .Include(p => p.SparePart.SparePartType)
+                .Where(p => p.RequestId == requestId)
+                .ToList();
+        }
 
         public static List<ProblemType> GetProblemTypesForView()
         {
             using DbAppContext ctx = new();
             return ctx.ProblemTypes
+                .ToList();
+        }
+        public static List<SparePartType> GetSparePartTypesForView()
+        {
+            using DbAppContext ctx = new();
+            return ctx.SparePartTypes
                 .ToList();
         }
 
@@ -61,6 +76,20 @@ namespace RepairRequest
         {
             using DbAppContext ctx = new();
             ctx.Requests.Update(request);
+            ctx.SaveChanges();
+        }
+
+        public static void AddSpareParts(SparePart sparePart)
+        {
+            using DbAppContext ctx = new();
+            ctx.SpareParts.Add(sparePart);
+            ctx.SaveChanges();
+        }
+
+        public static void UpdateSpareParts(SparePart sparePart)
+        {
+            using DbAppContext ctx = new();
+            ctx.SpareParts.Update(sparePart);
             ctx.SaveChanges();
         }
 

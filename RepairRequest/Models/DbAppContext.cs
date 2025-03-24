@@ -88,9 +88,9 @@ namespace RepairRequest.Models
 
                 entity.Property(e => e.ClientId).HasColumnName("client_id");
 
-                entity.Property(e => e.DateAdded).HasColumnName("date_added").HasConversion(dateTimeConverter); ;
+                entity.Property(e => e.DateAdded).HasColumnName("date_added").HasConversion(dateTimeConverter);
 
-                entity.Property(e => e.DateClosed).HasColumnName("date_closed").HasConversion(dateTimeConverter); ;
+                entity.Property(e => e.DateClosed).HasColumnName("date_closed").HasConversion(dateTimeConverter);
 
                 entity.Property(e => e.Description).HasColumnName("description");
 
@@ -136,6 +136,10 @@ namespace RepairRequest.Models
                     .HasColumnName("spare_part_name");
 
                 entity.Property(e => e.SparePartTypeId).HasColumnName("spare_part_type_id");
+
+                entity.Property(e => e.Quantity)
+                    .HasPrecision(10, 3)
+                    .HasColumnName("quantity");
 
                 entity.HasOne(d => d.SparePartType)
                     .WithMany(p => p.SpareParts)

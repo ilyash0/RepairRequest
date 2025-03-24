@@ -63,6 +63,13 @@ namespace RepairRequest.Views
                 _request.DateClosed = DateTime.Today;
             }
 
+            if (_request.SparePartRequests.Any(spr => spr.Quantity > spr.SparePart.Quantity))
+            {
+                MessageBox.Show("Требуемое к компонентов не должно превышать количество компонентов на складе", "Внимание", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+
             if (_request.RequestId != 0)
             {
                 ViewModel.UpdateRequests(_request);
@@ -72,12 +79,12 @@ namespace RepairRequest.Views
                 ViewModel.AddRequests(_request);
             }
             MessageBox.Show("Успешно!", "Информация", MessageBoxButton.OK, MessageBoxImage.Information);
-            FrameContext.MainWindowFrame.Navigate(new RequestListPage());
+            FrameContext.MainWindowFrame.GoBack();
         }
 
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
-            FrameContext.MainWindowFrame.Navigate(new RequestListPage());
+            FrameContext.MainWindowFrame.GoBack();
         }
 
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)

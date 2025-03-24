@@ -42,5 +42,13 @@ namespace RepairRequest.Views
                 FrameContext.MainWindowFrame.Navigate(new RequestEditPage(request));
             }
         }
+
+        private void SparePartsList_Click(object sender, RoutedEventArgs e)
+        {
+            if (requestsList.SelectedItem is Request request)
+            {
+                FrameContext.MainWindowFrame.Navigate(new SparePartListPage(request.RequestId));
+            }
+        }
     }
 }
