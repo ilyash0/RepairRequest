@@ -55,7 +55,7 @@ namespace RepairRequest.Views
                 ViewModel.AddSpareParts(_sparePart);
             }
             MessageBox.Show("Успешно!", "Информация", MessageBoxButton.OK, MessageBoxImage.Information);
-            FrameContext.MainWindowFrame.GoBack();
+            FrameContext.MainWindowFrame.Navigate(new SparePartListPage());
         }
 
         private void Cancel_Click(object sender, RoutedEventArgs e)

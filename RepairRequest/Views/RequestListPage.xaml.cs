@@ -35,6 +35,11 @@ namespace RepairRequest.Views
             FrameContext.MainWindowFrame.Navigate(new RequestEditPage());
         }
 
+        private void SparePartsList_Click(object sender, RoutedEventArgs e)
+        {
+            FrameContext.MainWindowFrame.Navigate(new SparePartListPage());
+        }
+
         private void requestsList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             if (((ListBox)sender).SelectedItem is Request request)
@@ -43,11 +48,11 @@ namespace RepairRequest.Views
             }
         }
 
-        private void SparePartsList_Click(object sender, RoutedEventArgs e)
+        private void SparePartRequestList_Click(object sender, RoutedEventArgs e)
         {
             if (requestsList.SelectedItem is Request request)
             {
-                FrameContext.MainWindowFrame.Navigate(new SparePartListPage(request.RequestId));
+                FrameContext.MainWindowFrame.Navigate(new SparePartRequestListPage(request.RequestId));
             }
         }
     }

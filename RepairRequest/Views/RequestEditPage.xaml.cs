@@ -63,12 +63,6 @@ namespace RepairRequest.Views
                 _request.DateClosed = DateTime.Today;
             }
 
-            if (_request.SparePartRequests.Any(spr => spr.Quantity > spr.SparePart.Quantity))
-            {
-                MessageBox.Show("Требуемое к компонентов не должно превышать количество компонентов на складе", "Внимание", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return;
-            }
-
 
             if (_request.RequestId != 0)
             {

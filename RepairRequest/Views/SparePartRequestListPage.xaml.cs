@@ -17,14 +17,16 @@ using System.Windows.Shapes;
 namespace RepairRequest.Views
 {
     /// <summary>
-    /// Interaction logic for SparePartListPage.xaml
+    /// Interaction logic for SparePartRequestListPage.xaml
     /// </summary>
-    public partial class SparePartListPage : Page
+    public partial class SparePartRequestListPage : Page
     {
-        public SparePartListPage()
+        private readonly int _requestId;
+        public SparePartRequestListPage(int requestId)
         {
             InitializeComponent();
-            sparePartsList.ItemsSource = ViewModel.GetSparePartesForView();
+            _requestId = requestId;
+            sparePartsList.ItemsSource = ViewModel.GetSparePartRequestsForView(_requestId);
         }
 
         private void Back_Click(object sender, RoutedEventArgs e)
@@ -34,14 +36,14 @@ namespace RepairRequest.Views
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            FrameContext.MainWindowFrame.Navigate(new SparePartEditPage());
+            FrameContext.MainWindowFrame.Navigate(new SparePartRequestEditPage(_requestId));
         }
 
         private void sparePartsList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            if (((ListBox)sender).SelectedItem is SparePart sparePart)
+            if (((ListBox)sender).SelectedItem is SparePartRequest sparePartRequest)
             {
-                FrameContext.MainWindowFrame.Navigate(new SparePartEditPage(sparePart));
+                FrameContext.MainWindowFrame.Navigate(new SparePartRequestEditPage(sparePartRequest));
             }
         }
     }

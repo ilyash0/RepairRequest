@@ -1,4 +1,4 @@
-﻿<Page x:Class="RepairRequest.Views.RequestListPage"
+﻿<Page x:Class="RepairRequest.Views.SparePartRequestListPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -7,7 +7,7 @@
       mc:Ignorable="d"
       d:DesignHeight="450"
       d:DesignWidth="800"
-      Title="RequestListPage">
+      Title="SparePartListPage">
 
     <Grid Margin="5"
           Background="White">
@@ -18,7 +18,6 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
@@ -28,32 +27,25 @@
                Source="/Images/icon.png" />
         <TextBlock Grid.Column="1"
                    Grid.ColumnSpan="2"
-                   Text="Список заявок на ремонт"
+                   Text="Список компонентов для заявки"
                    Margin="5"
                    FontSize="32" />
-        <TextBlock Name="textBoxAvgTime"
-                   Grid.ColumnSpan="3"
-                   Grid.Row="1"
-                   Text="Среднее время выполнения заявки: "
-                   Margin="5" />
 
         <WrapPanel Grid.Column="2"
-                   Grid.Row="3">
-            <Button Click="SparePartRequestList_Click"
-                    Content="Список компонентов для заявки" />
-            <Button Click="SparePartsList_Click"
-                    Content="Список всех компонентов на складе" />
-            <Button Click="NewRequest_Click"
-                    Content="Создать новую завяку" />
+                   Grid.Row="2">
+            <Button Click="Button_Click_1"
+                    Content="Добавить новый компонент для заявки" />
+            <Button Click="Back_Click"
+                    Content="Назад" />
         </WrapPanel>
 
-        <ListBox Name="requestsList"
+        <ListBox Name="sparePartsList"
                  Margin="5"
                  Background="#F4E8D3"
                  HorizontalContentAlignment="Stretch"
-                 Grid.Row="2"
+                 Grid.Row="1"
                  Grid.ColumnSpan="3"
-                 MouseDoubleClick="requestsList_MouseDoubleClick">
+                 MouseDoubleClick="sparePartsList_MouseDoubleClick">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Grid>
@@ -68,22 +60,21 @@
 
                         <TextBlock FontSize="18"
                                    TextWrapping="Wrap">
-                            <Run Text="{Binding RequestId}" />
-                            -
-                            <Run Text="{Binding Client.ClientName}" />
+                        <Run Text="{Binding SparePart.SparePartName}" />
                         </TextBlock>
 
-                        <TextBlock Text="{Binding Status.StatusName}"
-                                   Grid.Column="1"
+                        <TextBlock Grid.Column="1"
                                    Margin="0 0 15 0"
-                                   FontSize="18" />
+                                   FontSize="18">
+                            <Run Text="{Binding SparePart.SparePartCost}" />
+                            <Run Text="  ₽" />
+                        </TextBlock>
 
                         <TextBlock Grid.Row="1">
-                            <Run Text="{Binding DateAdded, StringFormat=dd.MM.yyyy}" />
-                            <Run Text="-" />
-                            <Run Text="{Binding DateClosed, StringFormat=dd.MM.yyyy}" /><LineBreak />
-                            <Run Text="{Binding Equipment}" /><LineBreak />
-                            Проблема: <Run Text="{Binding ProblemType.ProblemTypeName}" />
+                            <Run Text="Тип: " />
+                            <Run Text="{Binding SparePart.SparePartType.SparePartTypeName}" /><LineBreak />
+                            <Run Text="Требуемое количество: " />
+                            <Run Text="{Binding Quantity}" />
                         </TextBlock>
                     </Grid>
                 </DataTemplate>

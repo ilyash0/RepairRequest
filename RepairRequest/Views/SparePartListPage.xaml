@@ -27,7 +27,7 @@
                Source="/Images/icon.png" />
         <TextBlock Grid.Column="1"
                    Grid.ColumnSpan="2"
-                   Text="Список компонентов для заявки"
+                   Text="Список компонентов на складе"
                    Margin="5"
                    FontSize="32" />
 
@@ -35,7 +35,7 @@
                    Grid.Row="2">
             <Button Click="Button_Click_1"
                     Content="Создать новый компонент" />
-            <Button Click="RequestList_Click"
+            <Button Click="Back_Click"
                     Content="Назад" />
         </WrapPanel>
 
@@ -60,19 +60,19 @@
 
                         <TextBlock FontSize="18"
                                    TextWrapping="Wrap">
-                        <Run Text="{Binding SparePart.SparePartName}" />
+                        <Run Text="{Binding SparePartName}" />
                         </TextBlock>
 
                         <TextBlock Grid.Column="1"
                                    Margin="0 0 15 0"
                                    FontSize="18">
-                            <Run Text="{Binding SparePart.SparePartCost}" />
+                            <Run Text="{Binding SparePartCost}" />
                             <Run Text="  ₽" />
                         </TextBlock>
 
                         <TextBlock Grid.Row="1">
                             <Run Text="Тип: " />
-                            <Run Text="{Binding SparePart.SparePartType.SparePartTypeName}" /><LineBreak />
+                            <Run Text="{Binding SparePartType.SparePartTypeName}" /><LineBreak />
                             <Run Text="Требуемое количество: " />
                             <Run Text="{Binding Quantity}" />
                         </TextBlock>
